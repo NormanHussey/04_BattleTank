@@ -21,6 +21,9 @@ public:
 	ATank * GetAIControlledTank() const;
 
 	virtual void BeginPlay() override;
-	
+
+private:
+	ATank * GetPlayerTank()const;
+
 	
 };
