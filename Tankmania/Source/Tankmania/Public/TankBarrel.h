@@ -9,7 +9,7 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class TANKMANIA_API UTankBarrel : public UStaticMeshComponent
 {
 	GENERATED_BODY()
@@ -17,6 +17,15 @@ class TANKMANIA_API UTankBarrel : public UStaticMeshComponent
 public:
 	void Elevate(float DegreesPerSecond);
 
-	
+private:
+	UPROPERTY(EditAnywhere, Category = Setup)
+	float MaxDegreesPerSecond = 20; // sensible default
+
+	UPROPERTY(EditAnywhere, Category = Setup)
+	float MinElevationDegrees = 0;
+
+	UPROPERTY(EditAnywhere, Category = Setup)
+	float MaxElevationDegrees = 40;
+
 	
 };
