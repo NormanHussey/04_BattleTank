@@ -6,12 +6,14 @@
 #include "CoreMinimal.h"
 #include "AIController.h"
 #include "Tankmania.h"
-#include "Tank.h"
 #include "TankAIController.generated.h"
 
 /**
  * 
  */
+// Forward Declaration
+class ATank;
+
 UCLASS()
 class TANKMANIA_API ATankAIController : public AAIController
 {
