@@ -10,6 +10,7 @@ class UTankBarrel;
 class UTankAimingComponent;
 class AProjectile;
 
+
 UCLASS()
 class TANKMANIA_API ATank : public APawn
 {
@@ -33,6 +34,7 @@ protected:
 
 	UTankAimingComponent* TankAimingComponent = nullptr;
 
+	
 
 private:	
 	// Sets default values for this pawn's properties
