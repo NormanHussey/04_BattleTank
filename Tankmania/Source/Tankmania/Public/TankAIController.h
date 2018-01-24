@@ -20,14 +20,13 @@ class TANKMANIA_API ATankAIController : public AAIController
 	GENERATED_BODY()
 	
 public:
-	ATank * GetAIControlledTank() const;
 
 	virtual void BeginPlay() override;
 
 private:
 	
-	ATank * GetPlayerTank()const;
-
 	virtual void Tick(float DeltaTime) override;
 	
+	// How close can the AI tank get
+	float AcceptanceRadius = 30.0;
 };

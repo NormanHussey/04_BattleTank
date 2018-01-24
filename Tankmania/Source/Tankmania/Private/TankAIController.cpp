@@ -7,7 +7,7 @@
 void ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
-
+/*
 	auto PlayerTank = GetPlayerTank();
 	if (!PlayerTank)
 	{
@@ -17,31 +17,33 @@ void ATankAIController::BeginPlay()
 	{
 		UE_LOG(LogTemp, Warning, TEXT("The Player Controller is possessing: %s"), *(PlayerTank->GetName()))
 	}
+	*/
 }
 
-
-ATank* ATankAIController::GetAIControlledTank() const
-{
-
-	return Cast<ATank>(GetPawn());
-}
-
-ATank* ATankAIController::GetPlayerTank() const
-{
-	return Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
-}
 
 void ATankAIController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if (GetPlayerTank())
+
+	auto PlayerTank = Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
+	auto ControlledTank = Cast<ATank>(GetPawn());
+
+	if (PlayerTank)
 	{
-		// TODO Move towards the player
+		// Move towards the player
+		MoveToActor(PlayerTank, AcceptanceRadius, true, true, false, 0, true);
+
+		if (MoveToActor(PlayerTank, AcceptanceRadius, true, true, false, 0, true) == EPathFollowingRequestResult::Failed)
+		{
+			UE_LOG(LogTemp, Error, TEXT("PathFollowing request failed!"))
+		}
+
 		// Aim towards the player
-		GetAIControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
+		ControlledTank->AimAt(PlayerTank->GetActorLocation());
 
 		// Fire if ready
-		GetAIControlledTank()->Fire();
+		
+		ControlledTank->Fire();
 
 	}
 
