@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "TankPlayerController.h"
+#include "TankAimingComponent.h"
 #include "Tank.h"
 #include "Engine/World.h"
 #include "Tankmania.h"
@@ -8,16 +9,16 @@
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-
-	auto ControlledTank = GetControlledTank();
-	if (!ControlledTank)
+	auto AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
+	if (AimingComponent)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("PlayerController not possesing a tank!"));
+		FoundAimingComponent(AimingComponent);
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("PlayerController possessing: %s"), *(ControlledTank->GetName()))
+		UE_LOG(LogTemp, Warning, TEXT("Player Controller can't find aiming component at Begin Play"));
 	}
+	
 }
 
 void ATankPlayerController::Tick(float DeltaTime)
@@ -32,6 +33,8 @@ ATank* ATankPlayerController::GetControlledTank() const
 
 	return Cast<ATank>(GetPawn());
 }
+
+
 
 void ATankPlayerController::AimTowardsCrosshair()
 {
