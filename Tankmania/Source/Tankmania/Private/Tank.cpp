@@ -4,7 +4,6 @@
 #include "TankBarrel.h"
 #include "Projectile.h"
 #include "TankAimingComponent.h"
-#include "TankMovementComponent.h"
 
 
 // Sets default values
@@ -46,6 +45,7 @@ void ATank::BeginPlay()
 {
 	Super::BeginPlay();
 
+	TankAimingComponent = FindComponentByClass<UTankAimingComponent>();
 
 }
 
