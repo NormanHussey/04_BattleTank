@@ -11,8 +11,6 @@
 /**
  * 
  */
-// Forward Declaration
-class ATank;
 
 UCLASS()
 class TANKMANIA_API ATankAIController : public AAIController
