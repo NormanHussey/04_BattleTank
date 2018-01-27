@@ -21,10 +21,14 @@ public:
 
 	virtual void BeginPlay() override;
 
+protected:
+	// How close can the AI tank get
+	UPROPERTY(EditAnywhere, Category = "Setup")
+	float AcceptanceRadius = 10000.0;
+		
 private:
 	
 	virtual void Tick(float DeltaTime) override;
 	
-	// How close can the AI tank get
-	float AcceptanceRadius = 300.0;
+
 };
