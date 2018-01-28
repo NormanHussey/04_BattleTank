@@ -23,6 +23,9 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION()
+	void OnPossessedTankDeath();
+
 protected:
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
@@ -45,7 +48,10 @@ private:
 	bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
 
 	bool GetLookVectorHitLocation(FVector LookDirection, FVector& HitLocation) const;
-	
+
+	void SetPawn(APawn * InPawn);
+
+
 	UPROPERTY(EditAnywhere)
 	float LineTraceRange = 1000000.0;
 
